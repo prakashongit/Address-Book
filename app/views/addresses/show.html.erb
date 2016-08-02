@@ -1,0 +1,17 @@
+<div>
+  <p>First Name:      <%= @address.firstName %></p>
+  <p>Last Name:       <%= @address.lastName %></p>
+  <p>Email:           <%= @address.email %></p>
+  <p>Contact No:      <%= @address.phoneNo %></p>
+  <p>Country:          <%= @country.name %></p>
+  <p>State:            <%= @state.name %></p>
+  <p>City:             <%= @address.city %></p>
+  <p>Address:          <%= @address.address1+@address.address2 %></p>
+  <p>Street:            <%= @address.street %></p>
+  <p>Zip Code:          <%= @address.zipCode %></p>
+
+</div>
+
+
+<%= link_to 'Edit', edit_address_path(@address) %> |
+<%= link_to 'Back', addresses_path %>

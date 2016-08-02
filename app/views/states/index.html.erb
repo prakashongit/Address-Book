@@ -1,0 +1,30 @@
+<h1>Listing states</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>State Names</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% @countries.each do |c| %>
+  <% c.states.each do |s| %>
+      <tr>
+        <td><%= s.name %></td>
+        <td><%= link_to 'Show Details', s %></td>
+        <td><%= link_to 'Edit state', edit_state_path(s) %></td>
+        <td><%= link_to 'Delete', c, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Add New State', new_state_path %><br>
+<%= link_to 'Manage Countries ',controller: countries_path %>
+
+

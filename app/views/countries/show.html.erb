@@ -1,0 +1,17 @@
+<div><p>Country:<%= @country.name %></p>
+  <p>Active: <% if @country.is_Active -%>
+        <%= "yes"  %>
+    <% else %>
+        <%= "No"  %>
+    <%   end     %></p>
+  <%= link_to 'Edit', edit_country_path(@country) %> |
+  <%= link_to 'Back', countries_path %><br><br><br>
+
+
+  <table><tr><th>States</th></tr>
+    <tr><td><% @states.each do |c| %>
+          <%= c.name%><br>
+    <% end %></table>
+  </th></tr>
+</div><br>
+

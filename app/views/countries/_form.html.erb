@@ -1,0 +1,19 @@
+<%= form_for(@country) do |f| %>
+  <% if @country.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@country.errors.count, "error") %> prohibited this country from being saved:</h2>
+
+      <ul>
+      <% @country.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <p>Country Name <%= f.text_field :name %></p>
+    <p> <%= f.check_box :is_Active %> Active</p>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,41 @@
+<h1>Listing addresses</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>firstName</th>
+      <th>lastName</th>
+      <th>phoneNo </th>
+      <th>Details</th>
+      <th>Edit Details</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @addresses.each do |address| %>
+      <% @state_id = address.state_id %>
+      <% @state = State.find(@state_id.to_s) %>
+      <% @country_id = @state.country_id %>
+      <% @country = Country.find(@country_id.to_s) %>
+      <tr>
+        <td><%= address.firstName %></td>
+        <td><%= address.lastName %></td>
+        <td><%= address.phoneNo %></td>
+        <td><%= link_to 'Show', address %></td>
+        <td><%= link_to 'Edit', edit_address_path(address) %></td>
+        <td><%= link_to 'Destroy', address, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<br>
+
+<%= link_to 'Add New Address', new_address_path %>
+<br><br>
+<div>
+  <%= link_to 'Manage Countries ',controller: countries_path %>
+  <%= link_to 'Manage States ',controller: states_path %>
+</div>

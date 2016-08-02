@@ -1,0 +1,68 @@
+
+<%= form_for(@address) do |f| %>
+  <% if @address.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@address.errors.count, "error") %> prohibited this address from being saved:</h2>
+
+      <ul>
+      <% @address.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+    <% end %>
+    <p>First Name <%= f.text_field :firstName %></p>
+    <p>Last Name    <%= f.text_field :lastName %></p>
+    <p>Phone No    <%= f.text_field :phoneNo %></p>
+    <p>Country     <select id = 'select_id' name="country_id">
+      <option value=""></option>
+      <%= @country.each do | country | %>
+          <option value="<%= @id = country.id %>"><%= country.name %></option>
+      <% end %>
+
+    </select></p>
+
+    <p>State    <select id ='state'  name="name" >
+                    </select></p>
+    <p>Address1<%= f.text_field :address1 %></p>
+    <p>Address2<%= f.text_field :address2 %></p>
+    <p>Street<%= f.text_field :street %></p>
+    <p>City<%= f.text_field  :city %></p>
+    <p>Zip Code<%= f.text_field  :zipCode %></p>
+
+    <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+<script type = 'text/javascript'>
+    $(document).ready(function(){
+
+        $("#select_id").change(function(){
+
+            if ($(this).val() == '')
+            {
+                $('#state').html( $('<option> No state provided </option>'));
+            }
+            else {
+                $.ajax({
+                    type: "GET",
+                    url: "/addresses/get_states/" + $(this).val()+'',
+                    success: function(data){
+                        $('#state').empty()
+                        i=0;
+                            $.each(data, function(key, value) {
+                            $('#state')
+                                    .append($("<option></option>")
+                                            .attr("value",data[i]._id.$oid)
+                                            .text(value.name));
+                            i++;
+                        });
+
+                    }
+
+                });
+            }
+        });
+    });
+
+</script>

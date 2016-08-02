@@ -1,0 +1,13 @@
+
+<div>
+  <p>Country: <%= @country.name  %></p>
+  <p>State: <%= @state.name  %></p>
+  <p>Active: <% if @state.is_Active -%>
+             <%= "yes"  %>
+        <% else %>
+        <%= "No"  %>
+              <%   end     %></p>
+</div>
+
+<%= link_to 'Edit', edit_state_path(@state) %> |
+<%= link_to 'Back', states_path %>
